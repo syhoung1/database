@@ -1,0 +1,37 @@
+Removing duplicates from response:
+post.unique_title
+SELECT DISTINCT title FROM post
+
+Filters responses:
+comment.first_50
+SELECT * FROM comment ORDER BY id ASC WHERE id <= 50
+post.with_title
+SELECT * FROM post WHERE title != nil
+
+Sorting responses:
+post.ascending
+SELECT * FROM post ORDER BY id ASC
+
+Limiting number of responses:
+user.first_10
+SELECT * FROM user ORDER BY id ASC LIMIT 10
+
+Grouping:
+user.names
+SELECT * FROM user GROUP BY full_name
+
+Calculations:
+user(2).race_time
+SELECT AVG(race_time) FROM user WHERE user(id) IS 2
+
+Joins:
+Users.with_posts
+SELECT Users.full_name FROM Users INNER JOIN Posts ON Users.id == Posts.user_id
+
+Users.join_posts
+SELECT Posts.title, Users.full_name FROM Posts CROSS JOIN Users
+
+Posts.posts_with_comments
+SELECT Posts.title, Comments.body FROM Posts FULL OUTER JOIN Comments ON Posts.user_id == Users.id
+
+
